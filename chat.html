@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT</title>
+
+    <style>
+        body {}
+
+        input {
+            width: 40%;
+            font-size: 1.5rem;
+        }
+
+        #btAbertura,
+        #btCopia {
+            width: 50%;
+            padding: 10px;
+            background: yellow;
+        }
+
+        #btCopia {
+            background: green;
+            color: white;
+        }
+
+        .oculto {
+            display: none;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    ID caso:
+    <input id='caso' type="text">
+    <br><br>
+
+    Nombre:
+    <input id='nome' type="text">
+
+    <br><br>
+
+
+    <button id='btAbertura'>Lança</button>
+
+    <br><br>
+
+    <textarea class='oculto' id='resultado' type="text"></textarea>
+
+    <button id='btCopia'>COPIA</button>
+
+    <script>
+
+        // testar em: 
+        // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_copy_clipboard2
+
+        let msgAbertura;
+
+        const btAbertura = document.querySelector("#btAbertura");
+        const btCopia = document.querySelector("#btCopia");
+
+        let caso;
+
+        btAbertura.addEventListener("click", () => {
+            nome = document.querySelector("#nome").value;
+            caso = document.querySelector("#caso").value;
+
+            msgAbertura = `Hola, ${nome}. Te doy la bienvenida al chat. \n Soy Helio de Meta Pro Team y estaré haciendo todo para que alcances tus objetivos en nuestra plataforma. Te informo que el número de tu caso es: ${caso}. \n Aprovechando, en caso de que nuestra comunicación sea interrumpida: ¿Me puedes confirmar un número telefónico y email, por favor?`;
+
+            let resultado = document.querySelector("#resultado");
+            resultado.value = msgAbertura;
+
+            console.log(msgAbertura);
+        });
+
+        // evento para copiar o txt concatenado
+
+        btCopia.addEventListener("click", () => {
+            console.log("rodando btCopia");
+
+            let resultado = document.querySelector("#resultado");
+            resultado.select();
+            resultado.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(resultado.value);
+
+        });
+    </script>
+
+
+</body>
+
+</html>
